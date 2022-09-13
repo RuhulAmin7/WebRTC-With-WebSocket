@@ -4,6 +4,7 @@ const muteBtn = document.getElementById('muteBtn');
 const cameraBtn = document.getElementById('cameraOffBtn');
 const selectCam = document.getElementById('selectCam');
 const selectMic = document.getElementById('selectMic');
+const screenShareBtn = document.getElementById('screenShare');
 
 // global variables
 let mute = false;
@@ -12,7 +13,7 @@ let mediaStream;
 let currentCam;
 // get media devices
 async function getMedia(cameraId, micId) {
-  currentCam = cameraId === null? currentCam: cameraId;
+  currentCam = cameraId === null ? currentCam : cameraId;
 
   const initialConstraints = {
     video: true,
@@ -103,7 +104,7 @@ cameraBtn.addEventListener('click', () => {
 // get all camera devices
 async function getAllCameras() {
   const currentCamera = mediaStream.getVideoTracks()[0];
-    selectCam.innerHTML = '';
+  selectCam.innerHTML = '';
   try {
     const devices = await window.navigator.mediaDevices.enumerateDevices();
     devices.forEach((device) => {
@@ -150,3 +151,18 @@ selectMic.addEventListener('input', () => {
   const micId = selectMic.value;
   getMedia(null, micId);
 });
+
+// get screen media
+async function getScreenMedia() {
+  try {
+    mediaStream = await navigator.mediaDevices.getDisplayMedia({
+      audio: true,
+      video: true
+    });
+    displayMedia()
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+screenShareBtn.addEventListener('click', getScreenMedia);
