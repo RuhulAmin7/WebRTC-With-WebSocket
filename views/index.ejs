@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script>
+        const roomId = "<%=roomId%>"
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="text-center bg-danger">WebRTC</h1>
+    </header>
+
+    <main class="container d-flex justify-content-between">
+        <div id="display_area" class="d-flex justify-content-between">
+            <!-- <video id="video" src="https://www.w3schools.com/tags/movie.mp4" width="320" height="240" autoplay
+                muted>
+            </video> -->
+        </div>
+        <div id="controll_area">
+            <div class="mb-3">
+                <button id="muteBtn" class="btn btn-primary">Mute</button>
+                <button id="cameraOffBtn" class="btn btn-primary">Turn off camera</button>
+            </div>
+
+            <div class="input-group mb-3">
+                <select id="selectCam" name="select_camera" id="select_camera" class="form-select">
+                    <option disabled selected>--Select Camera--</option>
+                    <option>Cam One</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select id="selectMic" class="form-select">
+                    <option disabled selected>--Select Mic--</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <button id="screenShare" class="btn btn-danger">
+                    Share Screen
+                </button>
+            </div>
+            <div id="display_message" class="w-100 border w-100 h-50 mb-3">
+                <ul></ul>
+            </div>
+
+            <div>
+                <form class="input-group mb-3" id="msg_form">
+                    <input type="text" id="chat_input" class="form-control w-75" placeholder="Type your message">
+                    <button type="submit" class="form-control btn btn-primary w-25"> 
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
